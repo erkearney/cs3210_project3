@@ -1,7 +1,10 @@
 #lang racket
 
 (define (insertAtFront n list)
-  (cons n list)
+  (cond
+    [(null? list) '()]
+    [ (cons (cons n (car list)) (insertAtFront n (cdr list)))]
+  )
   )
 
 (define (revTour x)
@@ -19,5 +22,5 @@
   )
 
 (define (genTours n)
-  (permutations (genTour n))
+  (insertAtFront '1 (permutations (genTour n)))
  )
