@@ -24,3 +24,38 @@
 (define (genTours n)
   (insertAtFront '1 (permutations (genTour n)))
  )
+
+(define (firstScore points)
+  (cond
+    [ (equal? (cdr points) '()) 0 ]
+    [ (+(calcDistance (car points) (car(cdr points))) (firstScore (cdr points))) ]
+  )
+  )
+
+(define (score points path)
+  (pathScore (arrangePath points path))
+  )
+  
+
+  (define (arrangePath points path)
+    (cond
+      [ (equal? path '()) '() ]
+      [ (cons (list-ref points (- (car path) 1)) (arrangePath points (cdr path)))]
+      ))
+
+
+(define (pathScore points)
+  (+ (firstScore points) (lastDist points))
+  )
+
+(define (lastDist points)
+      (+ (calcDistance (car points) (last points))))
+
+(define (calcDistance pointa pointb)
+  (cond
+    [ (null? pointa) 0 ]
+    [ (null? pointb) 0 ]
+    [ (sqrt (+ (expt (-  (car pointb) (car pointa)) 2) (expt (- (car (cdr pointb)) (car (cdr pointa)) ) 2))) ]
+  )
+  )
+
