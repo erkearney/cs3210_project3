@@ -49,7 +49,7 @@
   )
 
 (define (lastDist points)
-      (+ (calcDistance (car points) (last points))))
+      (+ (calcDistance (last points) (car points))))
 
 (define (calcDistance pointa pointb)
   (cond
@@ -59,3 +59,4 @@
   )
   )
 
+  
