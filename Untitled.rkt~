@@ -59,25 +59,4 @@
   )
   )
 
-(define (etsp points)
-  (findOptimal points (genTours (length points)))
-)
-
-(define (findOptimal points tours)
-  (cond
-    [ (equal? (cdr(cdr tours)) '()) '() ]
-    [ (findSmallest points (findSmallest points (car tours) (car (cdr tours))) (findOptimal points (cdr (cdr tours))))  ]
-    ))
   
-(define (findSmallest points tour1 tour2)
-  (cond
-    [ (equal? tour2 '()) tour1 ]
-    [ (if (< (score points tour1) (score points tour2))
-         tour1
-         tour2
-         )
-      ]
-      )
-
-  )
-
